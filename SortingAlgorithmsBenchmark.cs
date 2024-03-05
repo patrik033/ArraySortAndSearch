@@ -14,7 +14,7 @@ namespace ArraySortAndSearch
     {
         private int[] arr;
 
-        [Params(50, 5000, 20000)]
+        [Params(50, 1500, 20000)]
         public int ArraySize;
 
         [GlobalSetup]
@@ -25,6 +25,13 @@ namespace ArraySortAndSearch
             arr = Enumerable.Range(0, ArraySize)
                 .OrderBy(c => random.Next())
             .ToArray();
+        }
+
+        [Benchmark]
+        [ArgumentsSource(nameof(Data))]
+        public void HybridSort()
+        {
+            OptimizedHybridSort.Sort(arr);
         }
 
         [Benchmark]

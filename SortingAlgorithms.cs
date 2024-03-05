@@ -129,6 +129,12 @@ namespace ArraySortAndSearch
             Console.WriteLine();
         }
 
+
+        public static void SortFinal(int[] arr)
+        {
+            OptimizedHybridSort.Sort(arr);
+        }
+
         public static void MeasurePerformance(int[] arr)
         {
             Stopwatch stopwatch = new Stopwatch();
@@ -136,25 +142,50 @@ namespace ArraySortAndSearch
             int[] arrBubbleSort = new int[arr.Length];
             int[] arrMergeSort = new int[arr.Length];
             int[] arrQuickSort = new int[arr.Length];
+            int[] arrHybridSort = new int[arr.Length];
+            int[] heapSort = new int[arr.Length];
+            int[] arrSort = new int[arr.Length];
+
+
 
             Array.Copy(arr, arrBubbleSort, arr.Length);
             Array.Copy(arr, arrMergeSort, arr.Length);
             Array.Copy(arr, arrQuickSort, arr.Length);
+            Array.Copy(arr, arrHybridSort, arr.Length);
+            Array.Copy(arr, heapSort, arr.Length);
+            Array.Copy(arr, arrSort, arr.Length);
+
+
 
             stopwatch.Start();
             BubbleSort(arrBubbleSort);
             stopwatch.Stop();
-            Console.WriteLine("Bubble Sort Time: " + stopwatch.ElapsedMilliseconds + "ms");
+            Console.WriteLine("Bubble Sort Time: " + stopwatch.ElapsedTicks + "ms");
 
             stopwatch.Restart();
             MergeSort(arrMergeSort, 0, arrMergeSort.Length - 1);
             stopwatch.Stop();
-            Console.WriteLine("Merge Sort Time: " + stopwatch.ElapsedMilliseconds + "ms");
+            Console.WriteLine("Merge Sort Time: " + stopwatch.ElapsedTicks + "ms");
 
             stopwatch.Restart();
             QuickSort(arrQuickSort, 0, arrQuickSort.Length - 1);
             stopwatch.Stop();
-            Console.WriteLine("Quick Sort Time: " + stopwatch.ElapsedMilliseconds + "ms");
+            Console.WriteLine("Quick Sort Time: " + stopwatch.ElapsedTicks + "ms");
+
+            stopwatch.Restart();
+            OptimizedHybridSort.Sort(arrHybridSort);
+            stopwatch.Stop();
+            Console.WriteLine("Hybrid Sort Time: " + stopwatch.ElapsedTicks + "ms");
+
+            stopwatch.Restart();
+            HeapSort.Sort(heapSort);
+            stopwatch.Stop();
+            Console.WriteLine("Heap Sort Time: " + stopwatch.ElapsedTicks + "ms");
+
+            stopwatch.Restart();
+            Array.Sort(arrHybridSort);
+            stopwatch.Stop();
+            Console.WriteLine("Array.Sort Time: " + stopwatch.ElapsedTicks + "ms");
         }
 
     }
